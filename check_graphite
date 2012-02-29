@@ -26,10 +26,15 @@ import urllib2
 
 graphite = Plugin("Plugin to retrieve data from graphite", "1.0")
 graphite.add_option("u", "url", "URL to query for data", required=True)
+graphite.add_option("H", "hostname", "Host name to use in the URL")
 
 graphite.enable_status("warning")
 graphite.enable_status("critical")
 graphite.start()
+
+if graphite.options.hostname:
+  graphite.options.url = graphite.options.url.replace('@HOSTNAME@', 
+    graphite.options.hostname.replace('.','_'))
 
 usock = urllib2.urlopen(graphite.options.url)
 data = usock.read()
