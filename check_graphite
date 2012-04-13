@@ -43,7 +43,7 @@ usock.close()
 pieces = data.split("|")
 counter = pieces[0].split(",")[0]
 values = pieces[1].split(",")[:-1]
-values = map(lambda x: 0.0 if x == 'None' else float(x), values)
+values = map(lambda x: float(x), filter(lambda x: x != 'None', values))
 avg = sum(values)/len(values);
 graphite.set_value(counter, avg)
 graphite.set_status_message("Avg value of %s was %f" % (counter, avg))
