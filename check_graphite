@@ -23,10 +23,31 @@
 from NagAconda import Plugin
 import urllib2
 
+def f_avg(values):
+  return sum(values)/len(values);
+
+def f_last(values):
+  return values[-1]
+
+def f_min(values):
+  return min(values)
+
+def f_max(values):
+  return max(values)
+
+functionmap = {
+  "avg":{  "label": "average", "function": f_avg },
+  "last":{ "label": "last",    "function": f_last },
+  "min":{  "label": "minimum", "function": f_min },
+  "max":{  "label": "maximum", "function": f_max },
+}
 
 graphite = Plugin("Plugin to retrieve data from graphite", "1.0")
 graphite.add_option("u", "url", "URL to query for data", required=True)
 graphite.add_option("H", "hostname", "Host name to use in the URL")
+graphite.add_option("n", "none", "Ignore None values: 'yes' or 'no' (default no)")
+graphite.add_option("f", "function", "Function to run on retrieved values: avg/min/max/last (default 'avg')",
+  default="avg")
 
 graphite.enable_status("warning")
 graphite.enable_status("critical")
@@ -40,12 +61,23 @@ usock = urllib2.urlopen(graphite.options.url)
 data = usock.read()
 usock.close()
 
+if graphite.options.function not in functionmap:
+  graphite.unknown_error("Bad function name given to -f/--function option: '%s'" % graphite.options.function)
+
 pieces = data.split("|")
 counter = pieces[0].split(",")[0]
 values = pieces[1].split(",")[:-1]
-values = map(lambda x: float(x), filter(lambda x: x != 'None', values))
-avg = sum(values)/len(values);
-graphite.set_value(counter, avg)
-graphite.set_status_message("Avg value of %s was %f" % (counter, avg))
+
+if graphite.options.none == 'yes':
+  values = map(lambda x: float(x), filter(lambda x: x != 'None', values))
+else:
+  values = map(lambda x: 0.0 if x == 'None' else float(x), values)
+if len(values) == 0:
+  graphite.unknown_error("Graphite returned an empty list of values")
+else:
+  value = functionmap[graphite.options.function]["function"](values)
+
+graphite.set_value(counter, value)
+graphite.set_status_message("%s value of %s: %f" % (functionmap[graphite.options.function]["label"], counter, value))
 
 graphite.finish()
