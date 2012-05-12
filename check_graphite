@@ -44,6 +44,8 @@ functionmap = {
 
 graphite = Plugin("Plugin to retrieve data from graphite", "1.0")
 graphite.add_option("u", "url", "URL to query for data", required=True)
+graphite.add_option("U", "username", "User for authentication")
+graphite.add_option("P", "password", "Password for authentication")
 graphite.add_option("H", "hostname", "Host name to use in the URL")
 graphite.add_option("n", "none", "Ignore None values: 'yes' or 'no' (default no)")
 graphite.add_option("f", "function", "Function to run on retrieved values: avg/min/max/last (default 'avg')",
@@ -52,6 +54,15 @@ graphite.add_option("f", "function", "Function to run on retrieved values: avg/m
 graphite.enable_status("warning")
 graphite.enable_status("critical")
 graphite.start()
+
+if graphite.options.username and graphite.options.password:
+	password_mgr = urllib2.HTTPPasswordMgrWithDefaultRealm()
+	password_mgr.add_password(None,uri=graphite.options.url,
+							user=graphite.options.username,
+							passwd=graphite.options.password)
+	auth_handler =urllib2.HTTPBasicAuthHandler(password_mgr)
+	opener = urllib2.build_opener(auth_handler)
+	urllib2.install_opener(opener)
 
 if graphite.options.hostname:
   graphite.options.url = graphite.options.url.replace('@HOSTNAME@', 
