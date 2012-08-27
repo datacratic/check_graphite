@@ -9,4 +9,6 @@ This is a Nagios plugin, so you install it and configure a service check in Nagi
 Dependencies
 ---
 
+Python 2.6+
+
 You'll need to have NagAconda installed (e.g. `easy_install nagaconda`)
