@@ -75,9 +75,12 @@ usock.close()
 if graphite.options.function not in functionmap:
   graphite.unknown_error("Bad function name given to -f/--function option: '%s'" % graphite.options.function)
 
-pieces = data.split("|")
-counter = pieces[0].split(",")[0]
-values = pieces[1].split(",")[:-1]
+try:
+  pieces = data.split("|")
+  counter = pieces[0].split(",")[0]
+  values = pieces[1].split(",")[:-1]
+except:
+  graphite.unknown_error("Graphite returned bad data")
 
 if graphite.options.none == 'yes':
   values = map(lambda x: float(x), filter(lambda x: x != 'None', values))
