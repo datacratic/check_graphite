@@ -35,11 +35,15 @@ def f_min(values):
 def f_max(values):
   return max(values)
 
+def f_sum(values):
+  return sum(values)
+
 functionmap = {
   "avg":{  "label": "average", "function": f_avg },
   "last":{ "label": "last",    "function": f_last },
   "min":{  "label": "minimum", "function": f_min },
   "max":{  "label": "maximum", "function": f_max },
+  "sum":{  "label": "sum",  "function": f_sum },
 }
 
 graphite = Plugin("Plugin to retrieve data from graphite", "1.0")
