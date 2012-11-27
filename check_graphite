@@ -52,7 +52,7 @@ graphite.add_option("U", "username", "User for authentication")
 graphite.add_option("P", "password", "Password for authentication")
 graphite.add_option("H", "hostname", "Host name to use in the URL")
 graphite.add_option("n", "none", "Ignore None values: 'yes' or 'no' (default no)")
-graphite.add_option("f", "function", "Function to run on retrieved values: avg/min/max/last (default 'avg')",
+graphite.add_option("f", "function", "Function to run on retrieved values: avg/min/max/last/sum (default 'avg')",
   default="avg")
 
 graphite.enable_status("warning")
