@@ -83,6 +83,8 @@ try:
   pieces = data.split("|")
   counter = pieces[0].split(",")[0]
   values = pieces[1].split(",")[:-1]
+  if len(data.strip().split('\n')) > 1:
+    raise 'Graphite returned multiple lines'
 except:
   graphite.unknown_error("Graphite returned bad data")
 
