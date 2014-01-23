@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python
 
 # Copyright (c) 2011 Recoset <nicolas@recoset.com>
 # 
@@ -88,7 +88,7 @@ for d in mdata:
   try:
     pieces = d.split("|")
     counter = pieces[0].split(",")[0]
-    values = pieces[1].split(",")[:-1]
+    values = pieces[1].split(",")
   except:
     graphite.unknown_error("Graphite returned bad data")
 
