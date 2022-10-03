@@ -32,4 +32,4 @@ Dependencies
 
 Python 2.6+
 
-You'll need to have NagAconda installed (e.g. `easy_install nagaconda`)
+You'll need to have NagAconda installed (e.g. `easy_install nagaconda` or `pip install nagaconda`)
