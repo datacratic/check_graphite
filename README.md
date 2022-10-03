@@ -1,22 +1,29 @@
 Nagios plugin to poll Graphite
-===
+==============================
 
 What does it do? How does it work? How do I run it?
----
+---------------------------------------------------
 
-This is a Nagios plugin, so you install it and configure a service
-check in Nagios and it runs whenever Nagios calls it and reports
-back on the status of whatever it's monitoring. It has one required
-parameter (`-u`) which tells it the Graphite URL to monitor, for
-example `http://server/render?target=stats.auctionStart&from=-1minutes&rawData=true`.
-When run, it will query that URL and treat the average of the
-values returned as the 'value' to be compared against the
-warning/critical thresholds, and return this value to Nagios as
-performance data. See Graphite's URL API documentation to generate
+This is a Nagios plugin. Install it and configure a service
+check in Nagios and it will run whenever Nagios calls it and
+will report back on the status of whatever it's monitoring.
+
+It has one required parameter `-u` which tells it the Graphite
+URL to monitor, for example:
+
+    http://server/render?target=stats.auctionStart&from=-1minutes&rawData=true`
+
+When run, it will query that URL, calculate the average (or
+another function) of the recieved values, compare the average
+to the warning/critical thresholds, and return the value to
+Nagios as performance data.
+
+See Graphite's URL API documentation on how to generate
 the URL parameter.
 
 Usage
----
+-----
+
 ```
 Usage: check_graphite -u URL [-U USERNAME] [-P PASSWORD] [-H HOSTNAME] [-n NONE] [-f FUNCTION] [-w WARNING] [-c CRITICAL]
 
@@ -37,7 +44,7 @@ Options:
 ```
 
 Dependencies
----
+------------
 
 Python 2.6+
 
