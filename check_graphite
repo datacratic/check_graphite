@@ -47,7 +47,7 @@ functionmap = {
 }
 
 graphite = Plugin("Plugin to retrieve data from graphite", "1.0")
-graphite.add_option("u", "url", "URL to query for data", required=True)
+graphite.add_option("u", "url", "URL to query for data (required)", required=True)
 graphite.add_option("U", "username", "User for authentication")
 graphite.add_option("P", "password", "Password for authentication")
 graphite.add_option("H", "hostname", "Host name to use in the URL")

@@ -26,7 +26,7 @@ Options:
     -h,          --help               show this help message and exit
     -V,          --version            show program's version number and exit
     -v,          --verbose            Get more verbose status output. Can be specified up to three times
-    -u URL,      --url=URL            URL to query for data
+    -u URL,      --url=URL            URL to query for data (required)
     -U USERNAME, --username=USERNAME  User for authentication
     -P PASSWORD, --password=PASSWORD  Password for authentication
     -H HOSTNAME, --hostname=HOSTNAME  Host name to use in the URL
