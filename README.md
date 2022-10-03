@@ -43,6 +43,11 @@ Options:
     -c CRITICAL, --critical=CRITICAL  Set the critical notification level (required)
 ```
 
+Example
+-------
+
+    check_graphite -u http://server/render?target=stats.auctionStart&from=-1minutes&rawData=true -w 10,20 -c 20,30
+
 Dependencies
 ------------
 
