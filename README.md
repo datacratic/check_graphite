@@ -25,7 +25,7 @@ Usage
 -----
 
 ```
-Usage: check_graphite -u URL [-U USERNAME] [-P PASSWORD] [-H HOSTNAME] [-n NONE] [-f FUNCTION] [-w WARNING] [-c CRITICAL]
+Usage: check_graphite -u URL [-U USERNAME] [-P PASSWORD] [-H HOSTNAME] [-n NONE] [-f FUNCTION] -w WARNING -c CRITICAL
 
 Plugin to retrieve data from graphite
 
@@ -39,8 +39,8 @@ Options:
     -H HOSTNAME, --hostname=HOSTNAME  Host name to use in the URL
     -n NONE,     --none=NONE          Ignore None values: 'yes' or 'no' (default no)
     -f FUNCTION, --function=FUNCTION  Function to run on retrieved values: avg/min/max/last/sum (default 'avg')
-    -w WARNING,  --warning=WARNING    Set the warning notification level.
-    -c CRITICAL, --critical=CRITICAL  Set the critical notification level.
+    -w WARNING,  --warning=WARNING    Set the warning notification level (required)
+    -c CRITICAL, --critical=CRITICAL  Set the critical notification level (required)
 ```
 
 Dependencies
