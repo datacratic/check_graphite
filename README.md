@@ -8,22 +8,24 @@ This is a Nagios plugin, so you install it and configure a service check in Nagi
 
 Usage
 ---
+```
 Usage: check_graphite -u URL [-U USERNAME] [-P PASSWORD] [-H HOSTNAME] [-n NONE] [-f FUNCTION] [-w WARNING] [-c CRITICAL]
 
 Plugin to retrieve data from graphite
 
 Options:
-`    -h, --help            show this help message and exit  
-    -V, --version         show program's version number and exit  
-    -v, --verbose         Get more verbose status output. Can be specified up to three times  
-    -u URL, --url=URL     URL to query for data  
-    -U USERNAME, --username=USERNAME User for authentication  
-    -P PASSWORD, --password=PASSWORD Password for authentication  
-    -H HOSTNAME, --hostname=HOSTNAME Host name to use in the URL  
-    -n NONE, --none=NONE  Ignore None values: 'yes' or 'no' (default no)  
-    -f FUNCTION, --function=FUNCTION Function to run on retrieved values: avg/min/max/last/sum (default 'avg')  
-    -w WARNING, --warning=WARNING Set the warning notification level.  
-    -c CRITICAL, --critical=CRITICAL Set the critical notification level.  `
+    -h,          --help               show this help message and exit
+    -V,          --version            show program's version number and exit
+    -v,          --verbose            Get more verbose status output. Can be specified up to three times
+    -u URL,      --url=URL            URL to query for data
+    -U USERNAME, --username=USERNAME  User for authentication
+    -P PASSWORD, --password=PASSWORD  Password for authentication
+    -H HOSTNAME, --hostname=HOSTNAME  Host name to use in the URL
+    -n NONE,     --none=NONE          Ignore None values: 'yes' or 'no' (default no)
+    -f FUNCTION, --function=FUNCTION  Function to run on retrieved values: avg/min/max/last/sum (default 'avg')
+    -w WARNING,  --warning=WARNING    Set the warning notification level.
+    -c CRITICAL, --critical=CRITICAL  Set the critical notification level.
+```
 
 Dependencies
 ---
